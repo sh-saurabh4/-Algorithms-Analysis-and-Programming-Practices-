@@ -29,7 +29,7 @@ void show(int a[], int n){
 void search(int a[], int data, int n){
 	int i = 0;
 	int pos = HASH(data,n,i);
-	while ( i != n || a[pos] == 0){
+	while ( i != n || a[pos] != 0){
 		if( a[pos] == data){
 			printf("%d IS FOUND\n",data);
 			break;
@@ -44,7 +44,7 @@ void search(int a[], int data, int n){
 void delete(int a[], int data, int n){
 	int i = 0;
 	int pos = HASH(data,n,i);
-	while(i != n || a[pos] == 0){
+	while(i != n || a[pos] != 0){
 		if(a[pos] == data){
 			a[pos] = INT_MIN;
 			printf("ITEM DELETED\n");
