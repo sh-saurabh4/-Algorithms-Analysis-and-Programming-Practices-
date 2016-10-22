@@ -4,7 +4,7 @@ struct node {
 	int data;
 	struct node *left,*right;
 };
-struct node * insert(struct node * node, int key){
+struct node *insert(struct node *node,int key){
 	if(node == NULL){
 		node = (struct node *)malloc(sizeof(struct node));
 		node->data = key;
@@ -17,23 +17,25 @@ struct node * insert(struct node * node, int key){
 		node->left = insert(node->left,key);
 	return node;
 }
-void preorder(struct node *root){
-	if(root == NULL)
-		return;
-	printf("%d ",root->data);
-	preorder(root->left);
-	preorder(root->right);
+int find(struct node *node,int count){
+	if(node == NULL)
+		return count;
+	if(node->left == NULL && node->right == NULL)
+		count++;
+	count = find(node->left,count);
+	count = find(node->right,count);
+	return count;
 }
+
 int main(){
-	int i,n,key,*a;
 	struct node *root = NULL;
-	a = (int *)malloc(n * sizeof(int));
+	int n,i,key,count = 0;
 	scanf("%d",&n);
-	for(i = 0; i < n; i++)
-		scanf("%d",&a[i]);
-	for(i = n-1; i>=0; i--)
-		root = insert(root,a[i]);
-	preorder(root);
+	for(i = 0; i < n; i++){
+		scanf("%d",&key);
+		root = insert(root,key);
+	}
+	count = find(root,count);
+	printf("%d\n",count);
 	return 0;
 }
-		
