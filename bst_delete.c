@@ -26,7 +26,7 @@ void inorder(struct node * node){
 	inorder(node->right);
 }
 struct node * search(struct node *node, int key){
-	if(node == NULL && node->data == key){
+	if(node == NULL || node->data == key){
 		return node;
 	}
 	if(node->data < key)
